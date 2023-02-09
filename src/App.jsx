@@ -1,34 +1,138 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import preguntas from "./questions";
+import { useState, useEffect } from "react";
+import Answers from "./components/Answers";
+import Score from "./components/Score";
+import Questions from "./components/Questions";
 
 function App() {
-  const [count, setCount] = useState(0)
+  // React state hooks, type useState
+  const [preguntaActual, setPreguntaActual] = useState(0);
+  const [puntuacion, setPuntuacion] = useState(0);
+  const [isFinished, setIsFinished] = useState(false);
+  const [tiempoRestante, setTiempoRestante] = useState(10);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [answerShown, setAnswerShown] = useState(false);
 
+  function handleAnswerSubmit(isCorrect, e) {
+    // añadir puntajes
+    if (isCorrect) setPuntuacion(puntuacion + 1);
+
+    //añade el atributo class con la opcion respectiva estilos
+    e.target.classList.add(isCorrect ? "correct" : "incorrect");
+
+    //cambiar la siguiente pregunta y espera 1s para pasar
+    setTimeout(() => {
+      if (preguntaActual === preguntas.length - 1) {
+        setIsFinished(true);
+      } else {
+        setPreguntaActual(preguntaActual + 1);
+        setTiempoRestante(10);
+      }
+    }, 1000);
+  }
+
+  //hacemos el conteo hacia atras de los 10s
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      if (tiempoRestante > 0) {
+        setTiempoRestante(tiempoRestante - 1);
+      } else {
+        setIsDisabled(true);
+      }
+    }, 1000);
+
+    return () => clearInterval(intervalo);
+  }, [tiempoRestante]);
+
+  //mostar resultado final del juego
+  if (isFinished)
+    return (
+      <main className="app">
+        <div className="juego-terminado">
+          <Score puntuacion={puntuacion} />
+
+          {/*Aqui un boton para volver a iniciar*/}
+          <div>
+            <button onClick={() => (window.location.href = "/")}>
+              {" "}
+              Volver a jugar
+            </button>
+          </div>
+
+          {/*Aqui un boton para ver las respuestas*/}
+          <div>
+            <button
+              onClick={() => {
+                setPreguntaActual(0);
+                setIsFinished(false);
+                setAnswerShown(true);
+              }}
+            >
+              ver respuestas
+            </button>
+          </div>
+        </div>
+      </main>
+    );
+
+  // muestra las preguntas con las respuestas
+  if (answerShown)
+    return (
+      <main className="app">
+        <Answers />
+      </main>
+    );
+
+  //interacion con las preguntas
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <main className="app">
+      <div className="lado-izquierdo">
+        <Questions preguntaActual={preguntaActual} />
+
+        {/*Aqui muestra el tiempo restante de la pregunta si no un botton */}
+        <div>
+          {!isDisabled ? (
+            <span className="tiempo-restante">
+              Tiempo Restante: {tiempoRestante}
+            </span>
+          ) : !(preguntaActual === preguntas.length - 1) ? (
+            //este boton reinicia todo al pasar la siguiente pregunta
+            <button
+              onClick={() => {
+                setTiempoRestante(10);
+                setIsDisabled(false);
+                setPreguntaActual(preguntaActual + 1);
+              }}
+            >
+              Continuar
+            </button>
+          ) : (
+            <button
+              onClick={() => {                
+                setIsFinished(true);                
+              }}
+            >
+              Ver Resultados
+            </button>
+          )}
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <div className="lado-derecho">
+        {/*Aqui muestra las opciones de la pregunta*/}
+        {preguntas[preguntaActual].opciones.map((respuesta) => (
+          <button
+            disabled={isDisabled}
+            key={respuesta.textoRespuesta}
+            onClick={(e) => handleAnswerSubmit(respuesta.isCorrect, e)}
+          >
+            {/*Aqui muestra el texto de cada opcion*/}
+            {respuesta.textoRespuesta}
+          </button>
+        ))}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    </main>
+  );
 }
 
-export default App
+export default App;
