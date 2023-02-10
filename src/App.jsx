@@ -1,13 +1,15 @@
 import { useState } from "react";
 import "./App.css";
-import FormAsk from "./pages/FormAsk";
+import FormAsk from "./components/FormAsk";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <div className="App">
-      <FormAsk />
+      <div className="container border d-flex justify-content-center ">
+        <FormAsk />
+      </div>
     </div>
   );
 }
