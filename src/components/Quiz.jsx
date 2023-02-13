@@ -4,8 +4,8 @@ import "./Quiz.css";
 const Quiz = () => {
   return (
     <div className="container d-flex flex-column justify-content-center align-items-center h-100 border">
-      <div className="row mb-3">
-        <div className="col-md-12">
+      <div className="row">
+        <div className="col-md-12 mb-3">
           <div id="idBgQuestion" className="card text-white">
             <div className="card-body">
               <div className="row">
@@ -19,11 +19,13 @@ const Quiz = () => {
               </div>
 
               <hr></hr>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjof the
-                card's content .heshsrhs cffrftfgfg gmfgmfmfgmf
-              </p>
+              <div className="mb-3 row col-sm-12">
+                <p className="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjof the
+                  card's content .heshsrhs cffrftfgfg gmfgmfmfgmf
+                </p>
+              </div>
 
               <div className="mb-3 row">
                 <label className="fw-bold col-sm-2 col-form-label text-center">
@@ -63,13 +65,13 @@ const Quiz = () => {
 
               <hr></hr>
 
-              <div class="mb-3 row">
-                <label class="fw-bold col-sm-2 col-form-label text-center">
+              <div className="mb-3 row">
+                <label className="fw-bold col-sm-2 col-form-label text-center">
                   D.
                 </label>
 
-                <div class="col-sm-10">
-                  <button class="btn btn-light col-12" type="button">
+                <div className="col-sm-10">
+                  <button className="btn btn-light col-12" type="button">
                     respuesta 4
                   </button>
                 </div>
@@ -77,7 +79,7 @@ const Quiz = () => {
 
               <div className="container d-flex justify-content-between">
                 <button
-                  class="btn btn-outline-info"
+                  className="btn btn-outline-info"
                   style={{ width: "200px" }}
                   type="button"
                 >
@@ -85,7 +87,7 @@ const Quiz = () => {
                 </button>
 
                 <button
-                  class="btn btn-outline-info"
+                  className="btn btn-outline-info"
                   style={{ width: "200px" }}
                   type="button"
                 >
@@ -95,36 +97,35 @@ const Quiz = () => {
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="row mb-3">
-        <div className="col-md-12">
-          <div id="idAnswer" className="card text-white">
-            <div className="card-body">
-              <label className="fw-bold col-form-label text-center">
-                La respuesta es: [ Felicitaciones es la correcta ]
-              </label>
-              <hr></hr>
-              <label className="fw-bold col-form-label text-center">
-                Criterios:
-              </label>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjof the
-                card's content .heshsrhs cffrftfgfg gmfgmfmfgmf
-              </p>
+        <div className="row mb-3">
+          <div className="col-md-12">
+            <div id="idAnswer" className="card text-white">
+              <div className="card-body">
+                <label className="fw-bold col-form-label text-center">
+                  La respuesta es: [ Felicitaciones es la correcta ]
+                </label>
+                <hr></hr>
+                <label className="fw-bold col-form-label text-center">
+                  Criterios:
+                </label>
+                <p className="card-text">
+                  Some quick examplef
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="row">
-        <div className="col-md-12">
-          <div id="idBanner" className="card text-white">
-            <div className="card-body">
-              <label className="fw-bold col-form-label text-center">
-                La respuesta es: [ NO ES, LOSIENTO ]. Pero hay otra oportunidad tu PUEDES  ;) 
-              </label>              
+        <div className="row mb-3">
+          <div className="col-md-12">
+            <div id="idBanner" className="card text-white">
+              <div className="card-body">
+                <label className="fw-bold col-form-label text-center">
+                  La respuesta es: [ NO ES, LOSIENTO ]. Pero hay otra oportunidad
+                  tu PUEDES ;)
+                </label>
+              </div>
             </div>
           </div>
         </div>

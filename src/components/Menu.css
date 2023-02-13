@@ -1,0 +1,20 @@
+a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.menu-opt {
+    margin-bottom: 7px;
+    height: 90px;
+    background-color: #c50cd250;
+}
+
+.menu-opt:hover {
+    background-color: #ffffff50;
+    cursor: pointer;
+}
+
+.no-padding-margin {
+    padding: 0;
+    margin: 0;
+}

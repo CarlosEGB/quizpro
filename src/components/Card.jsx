@@ -1,67 +1,37 @@
-import React from "react";
+import "./Card.css";
 
-const Card = () => {
+const Card = ({ question }) => {
+  const opciones = ["A:", "B:", "C:", "D:"];
+
   return (
-    <div className="card ">
+    <div className="card shadow-lg ">
       <div className="card-body">
-        <h3 className="card-title text-center">1 </h3>
-        <p className="card-text">
-          From a Testing perspective, what are the MAIN purposes of
-          Configuration Management?: i) Identifying the version of software
-          under test. ii) Controlling the version of testware items. iii)
-          Developing new testware items. iv) Tracking changes to testware items.
-          v) Analysing the need for new testware items.
-        </p>
+        <h5 className="card-title">ID:[ {question.id} ] </h5>
 
-        <div className="mb-2 row border bg-light">
-          <label htmlFor="staticEmail" className="col-sm-2 col-form-label ">
-            A:
-          </label>
-          <div className="col-sm-10">
-            <p className="card-text">ii, iv and v.</p>
+        <hr />
+        <div dangerouslySetInnerHTML={{ __html: question.question }} />
+        <hr />
+
+        {question.answers.map((answer, index) => (
+          <div className="mb-2 row border bg-light border border-1 border-warning bg-opacity-75 shadow-sm rounded-pill" key={answer.id}>
+            <label htmlFor="staticEmail" className="col-sm-2 col-form-label text-center ">
+              {opciones[index % 4]}
+            </label>
+            <div className="col-sm-10">
+              <p className="card-text">{answer.answer}</p>
+            </div>
           </div>
-        </div>
+        ))}
 
-        <div className="mb-2 row border bg-light">
-          <label htmlFor="staticEmail" className="col-sm-2 col-form-label">
-            B:
-          </label>
-          <div className="col-sm-10">
-            <p className="card-text">ii, iv and v.</p>
-          </div>
-        </div>
-
-        <div className="mb-2 row border bg-light">
-          <label htmlFor="staticEmail" className="col-sm-2 col-form-label">
-            C:
-          </label>
-          <div className="col-sm-10">
-            <p className="card-text">ii, iv and v.</p>
-          </div>
-        </div>
-
-        <div className="mb-2 row border bg-light">
-          <label htmlFor="staticEmail" className="col-sm-2 col-form-label">
-            D:
-          </label>
-          <div className="col-sm-10">
-            <p className="card-text">ii, iv and v.</p>
-          </div>
-        </div>
-
-        <div
-          className="btn-group gap-2"
-          role="group"
-          aria-label="Basic mixed styles example"
-        >
-          <button type="button" className="btn btn-outline-danger">
+        <div className="container d-flex justify-content-between pt-2 " >
+          <button type="button" className="btn btn-danger fw-bold" style={{ width: "200px" }}>
             Delete
           </button>
-          <button type="button" className="btn btn-outline-warning">
-            Editar
+          <button type="button" className="btn btn-warning fw-bold " style={{ width: "200px" }}>
+            Edit
           </button>
-          <button type="button" className="btn btn-outline-success">
-            Ver Respuesta
+          <button type="button" className="btn btn-success fw-bold " style={{ width: "200px" }}>
+            Show Answer
           </button>
         </div>
       </div>

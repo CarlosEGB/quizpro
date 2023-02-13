@@ -1,0 +1,132 @@
+[
+    {
+        "id": 1,
+        "question": "<p>Desde el punto de vista de las pruebas, &iquest;cu&aacute;les son los objetivos principales de la gesti&oacute;n de la configuraci&oacute;n?&nbsp;</p>\r\n<p>i) Identificar la versi&oacute;n del software sometido a prueba.&nbsp;<br />\r\nii) Controlar la versi&oacute;n de los elementos del software de prueba.&nbsp;<br />\r\niii) Desarrollar nuevos elementos de software de prueba.&nbsp;<br />\r\niv) Seguimiento de los cambios en los elementos de software de prueba.&nbsp;<br />\r\nv) Analizar la necesidad de nuevos elementos de software de prueba.</p>",
+        "answers": [
+            {
+                "id": 1,
+                "answer": "ii, iv and v.",
+                "correct": false
+            },
+            {
+                "id": 2,
+                "answer": "ii, iii and iv, i.",
+                "correct": false
+            },
+            {
+                "id": 3,
+                "answer": "i, ii and iv. ",
+                "correct": true
+            },
+            {
+                "id": 4,
+                "answer": "i, iii and v.",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "question": "<p>Dada la siguiente tabla de transiciones de estado, &iquest;cu&aacute;l de los siguientes casos de prueba cubrir&aacute; la siguiente serie de transiciones de estado? S1 SO S1 S2 SO&nbsp;<br />\r\nExponer: <br /></p>\r\n<p><span style=\"font-size:10.078991889953613pt\"><span><span style=\"color:#01002a\"><strong><img src=\"https://lh4.googleusercontent.com/EqMpKHpYuMqe_vumN2In_EfKGFTdsRvbZrH3rhJQZKDjIBaAIrAojXO73G1CKgG44uVWNM4Jq3O_Wke0CL_PPr1O9_xU7cLtq6XmOTElz0TzGVTB1lQJw4Z03dt9R8pe3aogoT66Im67ThBBePXrYzI\" style=\"height:153px; width:290px\" /></strong></span></span></span></p>",
+        "answers": [
+            {
+                "id": 5,
+                "answer": "D, A, B, C. ",
+                "correct": true
+            },
+            {
+                "id": 6,
+                "answer": "A, B, C, D. ",
+                "correct": false
+            },
+            {
+                "id": 7,
+                "answer": "D, A, B. ",
+                "correct": false
+            },
+            {
+                "id": 8,
+                "answer": "A, B, C. ",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "question": "<p>&iquest;Cu&aacute;l de las siguientes es una tarea PRINCIPAL de la planificaci&oacute;n de pruebas?&nbsp;</p>",
+        "answers": [
+            {
+                "id": 9,
+                "answer": "Programar las tareas de análisis y diseño de pruebas. ",
+                "correct": true
+            },
+            {
+                "id": 10,
+                "answer": "Iniciar acciones correctivas.",
+                "correct": false
+            },
+            {
+                "id": 11,
+                "answer": "Supervisar el progreso y la cobertura de las pruebas. ",
+                "correct": false
+            },
+            {
+                "id": 12,
+                "answer": "Evaluar y analizar los resultados.",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "question": "<p>&iquest;Cu&aacute;l de las siguientes opciones describe MEJOR la diferencia entre una inspecci&oacute;n (revisi&oacute;n formal) y un recorrido (revisi&oacute;n formal)?&nbsp;</p>",
+        "answers": [
+            {
+                "id": 13,
+                "answer": "Tanto las inspecciones como las revisiones son dirigidas por el autor.",
+                "correct": false
+            },
+            {
+                "id": 14,
+                "answer": "Una inspección es dirigida por un moderador y una revisión es dirigida por el autor.",
+                "correct": true
+            },
+            {
+                "id": 15,
+                "answer": "Tanto las inspecciones como los recorridos son dirigidos por un moderador capacitado.",
+                "correct": false
+            },
+            {
+                "id": 16,
+                "answer": "El autor dirige el recorrido. El autor no está presente durante las inspecciones.",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "question": "<p>&iquest;D&oacute;nde se pueden realizar las pruebas funcionales?&nbsp;</p>",
+        "answers": [
+            {
+                "id": 17,
+                "answer": "Sólo en los niveles de pruebas del sistema y de aceptación. ",
+                "correct": false
+            },
+            {
+                "id": 18,
+                "answer": "En todos los niveles de prueba. ",
+                "correct": true
+            },
+            {
+                "id": 19,
+                "answer": "En todos los niveles por encima de las pruebas de integracion. ",
+                "correct": false
+            },
+            {
+                "id": 20,
+                "answer": "En el nivel de prueba de aceptacion solamente.",
+                "correct": false
+            }
+        ]
+    }
+]
