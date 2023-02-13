@@ -1,124 +1,115 @@
-import React from "react";
+import React, { useState } from "react";
 import "./FormAsk.css";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const FormAsk = () => {
+
+  const [selectedOption, setSelectedOption] = useState("Select");
+
+  const handleChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+  const [textHtml, setTextHtml] = useState('');
+
+  const handleChangeEditor = (html) => {
+    setTextHtml(html);
+  }
+
   return (
-    <div className="col-6">
-      <form className="row shadow-lg m-2" id="myForm">
-        <div className="mb-2">
-          <label htmlFor="exampleFormControlTextarea189" className="form-label">
-            Pregunta
-          </label>
-          <textarea
-            className="form-control"
-            id="exampleFormControlTextarea1"
-            rows="3"
-          ></textarea>
-        </div>
+    <div className="container border d-flex flex-column justify-content-center" id="idContenedorForm">
+      <div className="row d-flex justify-content-center">
+        <div className="col-md-7">
+          <form className="p-3 shadow-lg m-2 rounded-3" id="myForm">
 
-        <div className="mb-2">
-          <label htmlFor="formFile" className="form-label">
-            Imagen
-          </label>
-          <input className="form-control" type="file" id="formFile" />
-        </div>
+            <div className="mb-2">
+              <h4 htmlFor="exampleFormControlTextarea189" className="form-label text-center">
+                Pregunta 1
+              </h4>
+              <hr />
+              <div className="bg-white ">
+                <ReactQuill
+                  theme="snow"
+                  value={textHtml}
+                  onChange={handleChangeEditor}
+                />               
+              </div>
+            </div>
 
-        <div className="mb-2">
-          <label htmlFor="exampleFormControlInput15" className="form-label">
-            Opcion A
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="exampleFormControlInput41"
-          />
-        </div>
+            <div className="mb-2 d-flex align-items-center">
+              <label htmlFor="exampleFormControlInput15" className="form-label fs-5 me-3">
+                A:
+              </label>
+              <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                rows="2"
+              ></textarea>
+            </div>
 
-        <div className="mb-2">
-          <label htmlFor="exampleFormControlInput31" className="form-label">
-            Opcion B
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="exampleFormControlInput21"
-          />
-        </div>
+            <div className="mb-2 d-flex align-items-center">
+              <label htmlFor="exampleFormControlInput15" className="form-label fs-5 me-3">
+                B:
+              </label>
+              <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                rows="2"
+              ></textarea>
+            </div>
 
-        <div className="mb-2">
-          <label htmlFor="exampleFormControlInput11" className="form-label">
-            Opcion C
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="exampleFormControlInput1"
-          />
-        </div>
+            <div className="mb-2 d-flex align-items-center">
+              <label htmlFor="exampleFormControlInput15" className="form-label fs-5 me-3">
+                C:
+              </label>
+              <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                rows="2"
+              ></textarea>
+            </div>
 
-        <div className="mb-2">
-          <label htmlFor="exampleFormControlInput11" className="form-label">
-            Opción: D
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="exampleFormControlInput1"
-          />
-        </div>
+            <div className="mb-2 d-flex align-items-center">
+              <label htmlFor="exampleFormControlInput15" className="form-label fs-5 me-3">
+                D:
+              </label>
+              <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                rows="2"
+              ></textarea>
+            </div>
 
-        <div className="dropdown mb-2">
-          <label htmlFor="exampleFormControlInput11" className="form-label">
-            La Respuesta:
-          </label>
-          <button
-            className="btn btn-light dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Answers
-          </button>
-          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li>
-              <a className="dropdown-item" href="#">
-                Opción: A
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Opción: B
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Opción: C
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Opción: D
-              </a>
-            </li>
-          </ul>
-        </div>
 
-        <div className="d-grid gap-2 mb-2"></div>
+            <hr />
 
-        <div
-          className="btn-group gap-2 mb-2"
-          role="group"
-          aria-label="Basic example"
-        >
-          <button className="btn btn-danger" type="button">
-            Cancel
-          </button>
-          <button className="btn btn-success" type="button">
-            Save
-          </button>
+            <div className="form-floating col-md-4 mx-auto ">
+              <select className="form-select" id="floatingSelect" aria-label="Floating label select example" value={selectedOption}
+                onChange={handleChange}>
+                <option select>select</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+              </select>
+              <label htmlFor="floatingSelect">La Respuesta es la:</label>
+            </div>
+
+            <hr />
+
+            <div className="container d-flex justify-content-between pt-2 " >
+              <button className="btn btn-outline-danger fw-bold border-2" type="button" style={{ width: "200px" }}>
+                Cancel
+              </button>
+              <button className="btn btn-outline-success fw-bold border-2" type="button" style={{ width: "200px" }}>
+                Save
+              </button>
+            </div>
+
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

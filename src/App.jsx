@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import Menu from "./components/Menu";
+import FormAsk from "./components/FormAsk";
 
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="App">
-        <Menu />
+        <FormAsk />
     </div>
   );
 }
