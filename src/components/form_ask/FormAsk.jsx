@@ -2,19 +2,29 @@ import React, { useState } from "react";
 import "./FormAsk.css";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const FormAsk = () => {
 
+  const navigate = useNavigate();
+
   const [selectedOption, setSelectedOption] = useState("Select");
+  const [textHtml, setTextHtml] = useState('');
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
   };
 
-  const [textHtml, setTextHtml] = useState('');
-
   const handleChangeEditor = (html) => {
     setTextHtml(html);
+  }
+
+  const handleCancelForm = () => {
+    navigate("/")
+  }
+
+  const handleSaveForm =() =>{
+    navigate("/")
   }
 
   return (
@@ -33,7 +43,7 @@ const FormAsk = () => {
                   theme="snow"
                   value={textHtml}
                   onChange={handleChangeEditor}
-                />               
+                />
               </div>
             </div>
 
@@ -81,7 +91,6 @@ const FormAsk = () => {
               ></textarea>
             </div>
 
-
             <hr />
 
             <div className="form-floating col-md-4 mx-auto ">
@@ -99,10 +108,10 @@ const FormAsk = () => {
             <hr />
 
             <div className="container d-flex justify-content-between pt-2 " >
-              <button className="btn btn-outline-danger fw-bold border-2" type="button" style={{ width: "200px" }}>
+              <button className="btn btn-outline-danger fw-bold border-2" onClick={handleCancelForm} type="button" style={{ width: "200px" }}>
                 Cancel
               </button>
-              <button className="btn btn-outline-success fw-bold border-2" type="button" style={{ width: "200px" }}>
+              <button className="btn btn-outline-success fw-bold border-2" onClick={handleSaveForm} type="button" style={{ width: "200px" }}>
                 Save
               </button>
             </div>
