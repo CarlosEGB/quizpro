@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./FormAsk.css";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const FormAsk = () => {
 
@@ -8,6 +10,12 @@ const FormAsk = () => {
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
   };
+
+  const [textHtml, setTextHtml] = useState('');
+
+  const handleChangeEditor = (html) => {
+    setTextHtml(html);
+  }
 
   return (
     <div className="container border d-flex flex-column justify-content-center" id="idContenedorForm">
@@ -20,11 +28,13 @@ const FormAsk = () => {
                 Pregunta 1
               </h4>
               <hr />
-              <textarea
-                className="form-control"
-                id="exampleFormControlTextarea1"
-                rows="5"
-              ></textarea>
+              <div className="bg-white ">
+                <ReactQuill
+                  theme="snow"
+                  value={textHtml}
+                  onChange={handleChangeEditor}
+                />               
+              </div>
             </div>
 
             <div className="mb-2 d-flex align-items-center">
@@ -83,7 +93,7 @@ const FormAsk = () => {
                 <option value="C">C</option>
                 <option value="D">D</option>
               </select>
-              <label for="floatingSelect">La Respuesta es la:</label>
+              <label htmlFor="floatingSelect">La Respuesta es la:</label>
             </div>
 
             <hr />
@@ -96,6 +106,7 @@ const FormAsk = () => {
                 Save
               </button>
             </div>
+
           </form>
         </div>
       </div>
