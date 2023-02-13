@@ -1,6 +1,6 @@
 import React from "react";
-import Card from "./Card";
-import questions from "../questions.json"
+import Card from "../../components/card/Card";
+import questions from "../../questions.json"
 
 const Cards = () => {
   return (
