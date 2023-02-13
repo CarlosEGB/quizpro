@@ -1,35 +1,20 @@
 import React from "react";
-import "./menu.css";
-
-const MyComponent = ({ url, text, description }) => {
-    return (
-        <div className="menu-opt height: 100px">
-            <a href={url}>
-                <div>
-                    <p>{text}</p>
-                    <p>{description}</p>
-                </div>
-            </a>
-        </div>
-    );
-};
+import "./Menu.css";
 
 const Menu = () => {
     return (
-        <div className="container mt-5">
-            <h1>Menu</h1>
-            <div className="row">
-                <div className="col-md-8 no-padding-margin">
-                    <MyComponent url="/op1" text="op1" description="Aqui podras crear tus preguntas" />
+        <div className="container d-flex flex-column  justify-content-center border" id='idContenedorMenu'>
+            <div className="row d-flex justify-content-center">
+                <div id="idMenu" className="rounded-4 col-md-6 shadow-lg">
+                    <h1 className="text-center pt-2 text-white">Menu</h1>
+                    <hr className="border border-white border-1 col-md-10 mx-auto" />
+                    <div className="d-grid gap-2 col-md-8 mx-auto mb-3 fw-bold ">
+                        <button className="btn btn-outline-light btn-lg border border-2 mb-2 rounded-pill" type="button">¡¡ GESTIONA tus Preguntas !!</button>
+                        <button className="btn btn-outline-light btn-lg border border-2 mb-2 rounded-pill" type="button">¡¡ CREAR tus Preguntas !!</button>
+                        <button className="btn btn-outline-light btn-lg border border-2 mb-2 rounded-pill" type="button">¡¡ HAZ tu Quiz !!</button>
+                    </div>
                 </div>
-                <div className="col-md-4 no-padding-margin">
-                    <MyComponent url="/op2" text="op2" description="Aqui podras practicar tu vocabulario" />
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-md-12 no-padding-margin">
-                <MyComponent url="/op3" text="op3" description="Aqui podras ver tus preguntas guardadas" />
-                </div>
+
             </div>
         </div>
     );
