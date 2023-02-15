@@ -21,6 +21,35 @@ const Quiz = ({ questionsApi }) => {
   const [minutesDown, setMinutesDown] = useState(60);
   const [secondsDown, setSecondsDown] = useState(0);
   const [timeQuiz, setTimeQuiz] = useState("");
+  const [timeStop, setTimeStop] = useState(false);
+
+  useEffect(() => {
+    let intervalUp = setInterval(() => {
+      if (secondsUp === 59) {
+        setMinutesUp(minutesUp + 1);
+        setSecondsUp(0);
+      } else if (timeStop) {
+        clearInterval(intervalUp)
+      } else {
+        setSecondsUp(secondsUp + 1);
+      }
+    }, 1000);
+    return () => clearInterval(intervalUp);
+  }, [minutesUp, secondsUp]);
+
+  useEffect(() => {
+    let intervalDown = setInterval(() => {
+      if (secondsDown > 0) {
+        setSecondsDown(secondsDown - 1);
+      } else if (secondsDown === 0 && minutesDown > 0) {
+        setSecondsDown(59);
+        setMinutesDown(minutesDown - 1);
+      } else {
+        clearInterval(intervalDown);
+      }
+    }, 1000);
+    return () => clearInterval(intervalDown);
+  }, [minutesDown, secondsDown]);
 
   const handleAnswer = (isCorrect, event) => {
     event.target.classList.replace("btn-light", isCorrect ? "btn-success" : "btn-danger");
@@ -32,20 +61,27 @@ const Quiz = ({ questionsApi }) => {
     if (intento === 0 && questionNow === askCurrent) {
       setAskCurrent(askCurrent + 1);
     }
-    setIntento(intento + 1)
+    setIntento(intento + 1);
+    setTimeStop(true);
   }
 
   const handleNextQuestion = () => {
     if (questionNow === questionsApi.length - 1) {
       setTimeQuiz(minutesDown + ":" + (secondsDown < 10 ? "0" + secondsDown : secondsDown));
+      setMinutesDown(0);
+      setSecondsDown(0);
       setIsFinished(true);
     } else {
       setQuestionNow(questionNow + 1);
+      setTimeStop(false);
       setIntento(0);
-      //setMinutesUp(0);
-      //setSecondsUp(0);
-      document.getElementById("buttonNextId").classList.add("disabled");
+      setMinutesUp(0);
+      setSecondsUp(0);
+      if (askCurrent === questionNow + 1) {
+        document.getElementById("buttonNextId").classList.add("disabled");
+      }
     }
+
   }
 
   const handleBackQuestion = () => {
@@ -54,7 +90,10 @@ const Quiz = ({ questionsApi }) => {
     } else {
       setQuestionNow(questionNow - 1);
     }
+    setTimeStop(false);
     setIntento(1)
+    setMinutesUp(0);
+    setSecondsUp(0);
     document.getElementById("buttonNextId").classList.remove("disabled");
   }
 
