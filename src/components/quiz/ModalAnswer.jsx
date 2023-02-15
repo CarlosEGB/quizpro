@@ -35,7 +35,7 @@ const Message = () => {
                         </div>
                         <div className="modal-body text-center">
                             <label className="fw-bold col-form-label ">
-                                Pero nunca TE RINDAS lo lograrás &#128521;
+                              !!  Lo Lograrás &#128521; Animo ¡¡
                             </label>
                         </div>
                         <div className="modal-footer">
