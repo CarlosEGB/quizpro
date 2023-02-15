@@ -1,12 +1,13 @@
 import React from "react";
 import "./Quiz.css";
 import { useState, useEffect } from "react";
-import questions from "../../questions.json"
 import { useNavigate } from 'react-router-dom';
 import ModalAnswer from "./ModalAnswer"
 import Result from "./Result"
 
-const Quiz = () => {
+
+const Quiz = ({ questionsApi }) => {
+
   const opciones = ["A :", "B :", "C :", "D :"];
   const navigate = useNavigate();
 
@@ -20,12 +21,15 @@ const Quiz = () => {
   const [minutesDown, setMinutesDown] = useState(60);
   const [secondsDown, setSecondsDown] = useState(0);
   const [timeQuiz, setTimeQuiz] = useState("");
+  const [timeStop, setTimeStop] = useState(false);
 
   useEffect(() => {
     let intervalUp = setInterval(() => {
       if (secondsUp === 59) {
         setMinutesUp(minutesUp + 1);
         setSecondsUp(0);
+      } else if (timeStop) {
+        clearInterval(intervalUp)
       } else {
         setSecondsUp(secondsUp + 1);
       }
@@ -38,8 +42,8 @@ const Quiz = () => {
       if (secondsDown > 0) {
         setSecondsDown(secondsDown - 1);
       } else if (secondsDown === 0 && minutesDown > 0) {
-        setMinutesDown(minutesDown - 1);
         setSecondsDown(59);
+        setMinutesDown(minutesDown - 1);
       } else {
         clearInterval(intervalDown);
       }
@@ -48,47 +52,54 @@ const Quiz = () => {
   }, [minutesDown, secondsDown]);
 
   const handleAnswer = (isCorrect, event) => {
-    //cambia de color a verde o rojo
     event.target.classList.replace("btn-light", isCorrect ? "btn-success" : "btn-danger");
+    document.getElementById("buttonNextId").classList.remove("disabled");
 
-    //valida el segundo intento
     if (isCorrect && intento === 0 && questionNow === askCurrent) {
-      //puntuacion
       setScore(score + 1);
-      //intentos
     }
     if (intento === 0 && questionNow === askCurrent) {
       setAskCurrent(askCurrent + 1);
     }
-    setIntento(intento + 1)
+    setIntento(intento + 1);
+    setTimeStop(true);
   }
 
   const handleNextQuestion = () => {
-    if (questionNow === questions.length - 1) {
+    if (questionNow === questionsApi.length - 1) {
       setTimeQuiz(minutesDown + ":" + (secondsDown < 10 ? "0" + secondsDown : secondsDown));
+      setMinutesDown(0);
+      setSecondsDown(0);
       setIsFinished(true);
     } else {
-      //cambia de pregunta
       setQuestionNow(questionNow + 1);
+      setTimeStop(false);
       setIntento(0);
       setMinutesUp(0);
       setSecondsUp(0);
+      if (askCurrent === questionNow + 1) {
+        document.getElementById("buttonNextId").classList.add("disabled");
+      }
     }
+
   }
 
   const handleBackQuestion = () => {
     if (questionNow === 0) {
       navigate("/")
     } else {
-      //cambia de pregunta
       setQuestionNow(questionNow - 1);
     }
+    setTimeStop(false);
     setIntento(1)
+    setMinutesUp(0);
+    setSecondsUp(0);
+    document.getElementById("buttonNextId").classList.remove("disabled");
   }
 
   if (isFinished) {
     return (
-      <Result score={score} numQuestions={questions.length} timeQuiz={timeQuiz} />
+      <Result score={score} numQuestions={questionsApi.length} timeQuiz={timeQuiz} />
     );
   }
 
@@ -100,9 +111,9 @@ const Quiz = () => {
             <div className="card-body ">
               <div className="row ">
 
-                <h5 className="card-title col-md-3">Pregunta {questionNow + 1} de {questions.length}</h5>
+                <h5 className="card-title col-md-3">Pregunta {questionNow + 1} de {questionsApi.length}</h5>
                 <label className="col-md-3 fw-bold col-form-label text-center">
-                  Score: {score} de {questions.length}
+                  Score: {score} de {questionsApi.length}
                 </label>
                 <label className="col-md-3 fw-bold col-form-label text-center">
                   Time-Ask: {minutesUp}:{secondsUp < 10 ? `0${secondsUp}` : secondsUp}
@@ -115,13 +126,13 @@ const Quiz = () => {
 
               <hr />
               <div className="mb-3 row m-3">
-                <p className="card-text" dangerouslySetInnerHTML={{ __html: questions[questionNow].question }}>
+                <p className="card-text" dangerouslySetInnerHTML={{ __html: questionsApi[questionNow].question }}>
                 </p>
               </div>
               <hr />
 
               {
-                questions[questionNow].answers.map((answer, index) => (
+                questionsApi[questionNow].answers.map((answer, index) => (
                   <div className="row" key={answer.id}>
                     <label className="fw-bold col-sm-2 col-form-label text-center">
                       {opciones[index % 4]}
@@ -142,9 +153,9 @@ const Quiz = () => {
                 ))
               }
 
-
               <div className="container d-flex justify-content-between">
                 <button
+                  id="buttonBackId"
                   className="btn btn-outline-info"
                   style={{ width: "200px" }}
                   type="button"
@@ -154,7 +165,8 @@ const Quiz = () => {
                 </button>
 
                 <button
-                  className="btn btn-outline-info"
+                  id="buttonNextId"
+                  className="btn btn-outline-info disabled"
                   style={{ width: "200px" }}
                   type="button"
                   onClick={(e) => handleNextQuestion(e)}

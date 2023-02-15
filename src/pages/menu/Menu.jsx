@@ -18,7 +18,7 @@ const Menu = () => {
                     <div className="d-grid gap-2 col-md-8 mx-auto mb-3 fw-bold ">
                         <button className="btn btn-outline-light btn-lg border border-2 mb-2 rounded-pill" value="Cards" onClick={handleClick} type="button">¡¡ GESTIONA tus Preguntas !!</button>
                         <button className="btn btn-outline-light btn-lg border border-2 mb-2 rounded-pill" value="FormAsk" onClick={handleClick} type="button">¡¡ CREAR tus Preguntas !!</button>
-                        <button className="btn btn-outline-light btn-lg border border-2 mb-2 rounded-pill" value="quiz" onClick={handleClick} type="button">¡¡ HAZ tu Quiz !!</button>
+                        <button className="btn btn-outline-light btn-lg border border-2 mb-2 rounded-pill" value="quizs" onClick={handleClick} type="button">¡¡ HAZ tu Quiz !!</button>
                     </div>
                 </div>
 
