@@ -1,15 +1,12 @@
-import { useState } from "react";
+import React from "react";
 import "./App.css";
 import Menu from "./pages/menu/Menu";
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
-import Cards from "./pages/cards/Cards"
-import Quiz from "./components/quiz/Quiz"
-import FormAsk from "./components/form_ask/FormAsk"
-
+import Cards from "./pages/cards/Cards";
+import Quiz from "./components/quiz/Quiz";
+import FormAsk from "./components/form_ask/FormAsk";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <main>
       <BrowserRouter>
