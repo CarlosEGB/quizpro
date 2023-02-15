@@ -1,11 +1,15 @@
 #idBgQuestion{
-    background-color: #1f207447;
+    background-color: #2829778a;
 }
 
 #idAnswer{
-    background-color: #23d89680;
+    background-color: #10c985;
 }
 
 #idBanner{
-    background-color: #c50cd250;
+    background-color: #d20c58;
+}
+
+#idContenedorQuiz{
+    min-height: 100vh
 }
